@@ -74,3 +74,24 @@ function guardarProducto() {
     document.getElementById('overlay').style.display = 'none';
 }
 
+// Función para actualizar la interfaz de usuario
+function actualizarInterfaz() {
+    const productList = document.getElementById('product-list');
+    productList.innerHTML = '';
+    productos.forEach(producto => {
+        const productDiv = document.createElement('div');
+        productDiv.className = 'product';
+        productDiv.innerHTML = `
+            ${producto.nombre} - Cantidad: ${producto.cantidad} - Precio: ${producto.precio}
+            <button onclick="editarProducto(${producto.id})">Editar</button>
+            <button onclick="eliminarProducto(${producto.id})">Eliminar</button>
+        `;
+        productList.appendChild(productDiv);
+    });
+}
+
+// Función para guardar productos en LocalStorage
+function guardarEnLocalStorage() {
+    localStorage.setItem('productos', JSON.stringify(productos));
+}
+
