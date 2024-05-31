@@ -27,3 +27,18 @@ function mostrarFormularioAgregar() {
     document.getElementById('form-container').style.display = 'block';
     document.getElementById('overlay').style.display = 'block';
 }
+
+// Función para limpiar el formulario
+function limpiarFormulario() {
+    document.getElementById('product-name').value = '';
+    document.getElementById('product-quantity').value = '';
+    document.getElementById('product-price').value = '';
+    editandoProductoId = null;
+}
+
+// Función para cancelar la edición
+function cancelarEdicion() {
+    limpiarFormulario();
+    document.getElementById('form-container').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+}
