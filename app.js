@@ -95,3 +95,20 @@ function guardarEnLocalStorage() {
     localStorage.setItem('productos', JSON.stringify(productos));
 }
 
+// Función para cargar productos desde LocalStorage
+function cargarDesdeLocalStorage() {
+    const data = localStorage.getItem('productos');
+    if (data) {
+        productos = JSON.parse(data);
+        actualizarInterfaz();
+    }
+}
+
+// Función para filtrar productos
+function filtrarProductos() {
+    const query = document.getElementById('search').value.toLowerCase();
+    const filteredProducts = productos.filter(producto => 
+        producto.nombre.toLowerCase().includes(query)
+    );
+    actualizarInterfazConFiltro(filteredProducts);
+}
