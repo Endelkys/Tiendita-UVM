@@ -42,3 +42,35 @@ function cancelarEdicion() {
     document.getElementById('form-container').style.display = 'none';
     document.getElementById('overlay').style.display = 'none';
 }
+
+// Función para guardar producto (nuevo o editado)
+function guardarProducto() {
+    const nombre = document.getElementById('product-name').value;
+    const cantidad = parseInt(document.getElementById('product-quantity').value);
+    const precio = parseFloat(document.getElementById('product-price').value);
+
+    if (!nombre || isNaN(cantidad) || isNaN(precio)) {
+        mostrarAlerta('Por favor, complete todos los campos', 'error');
+        return;
+    }
+
+    const id = editandoProductoId || Date.now();
+    const producto = new Producto(id, nombre, cantidad, precio);
+
+    if (editandoProductoId) {
+        // Editar producto existente
+        productos = productos.map(p => p.id === editandoProductoId ? producto : p);
+        mostrarAlerta('Producto actualizado con éxito', 'success');
+    } else {
+        // Agregar nuevo producto
+        productos.push(producto);
+        mostrarAlerta('Producto agregado con éxito', 'success');
+    }
+
+    actualizarInterfaz();
+    guardarEnLocalStorage();
+    limpiarFormulario();
+    document.getElementById('form-container').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+}
+
