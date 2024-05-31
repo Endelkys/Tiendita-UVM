@@ -96,3 +96,43 @@ h1 {
 .product button:hover {
     background-color: #218838;
 }
+
+.alert {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    z-index: 1002;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.alert.success {
+    background-color: #4caf50;
+}
+
+.alert.error {
+    background-color: #f44336;
+}
+
+@keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeout {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .product {
+        padding: 5px;
+        font-size: 14px;
+    }
+}
