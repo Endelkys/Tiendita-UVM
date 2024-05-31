@@ -139,3 +139,24 @@ function mostrarAlerta(mensaje, tipo) {
         alerta.remove();
     }, 3000);
 }
+
+// Función para editar producto
+function editarProducto(id) {
+    const producto = productos.find(p => p.id === id);
+    if (producto) {
+        document.getElementById('product-name').value = producto.nombre;
+        document.getElementById('product-quantity').value = producto.cantidad;
+        document.getElementById('product-price').value = producto.precio;
+        editandoProductoId = id;
+        document.getElementById('form-container').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
+}
+
+// Función para eliminar producto
+function eliminarProducto(id) {
+    productos = productos.filter(p => p.id !== id);
+    actualizarInterfaz();
+    guardarEnLocalStorage();
+    mostrarAlerta('Producto eliminado con éxito', 'success');
+}
