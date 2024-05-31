@@ -112,3 +112,30 @@ function filtrarProductos() {
     );
     actualizarInterfazConFiltro(filteredProducts);
 }
+
+// Función para actualizar la interfaz con productos filtrados
+function actualizarInterfazConFiltro(productosFiltrados) {
+    const productList = document.getElementById('product-list');
+    productList.innerHTML = '';
+    productosFiltrados.forEach(producto => {
+        const productDiv = document.createElement('div');
+        productDiv.className = 'product';
+        productDiv.innerHTML = `
+            ${producto.nombre} - Cantidad: ${producto.cantidad} - Precio: ${producto.precio}
+            <button onclick="editarProducto(${producto.id})">Editar</button>
+            <button onclick="eliminarProducto(${producto.id})">Eliminar</button>
+        `;
+        productList.appendChild(productDiv);
+    });
+}
+
+// Función para mostrar alertas
+function mostrarAlerta(mensaje, tipo) {
+    const alerta = document.createElement('div');
+    alerta.className = `alert ${tipo}`;
+    alerta.textContent = mensaje;
+    document.body.appendChild(alerta);
+    setTimeout(() => {
+        alerta.remove();
+    }, 3000);
+}
